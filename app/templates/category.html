@@ -17,10 +17,10 @@
                 <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
                 <small class="text-muted mr-2">{{ post.posted_date.strftime('%Y-%m-%d') }}</small>           
             </div>
+            <button type="button" class="btn btn-outline-primary">
+                <a class="ratings" href="{{ url_for('posts.new_comment', post_id=post.id) }}"> Leave a comment</a>
+            </button>
         </div>
-        <button type="button" class="btn btn-outline-primary">
-            <a class="ratings" href="{{ url_for('posts.new_comment', post_id=post.id) }}"> Leave a comment</a>
-        </button>
     </article>
     {% endfor %}
     
