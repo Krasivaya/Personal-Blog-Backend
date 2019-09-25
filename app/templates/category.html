@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+    <h2 class="mb-4 mt-5 pt-2"> Pitches in {{category}} </h2>
+
+    {% for post in post %}
+
+    <article class="media content-section">
+      <img class="rounded float-left article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image) }}" alt="{{ post.author.username }} profile photo">
+        <div class="media-body">
+            <div class="d-flex w-100 justify-content-between">
+                <h2><a class="article-title mt-2" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <small class="mr-2">Posted in: <a class="mr-2" href="{{ url_for('posts.category_post', category=post.category) }}">{{ post.category }}</a></small>
+            </div>
+            <p class="article-content">{{ post.content }}</p>
+            <div class="article-metadata">
+                <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                <small class="text-muted mr-2">{{ post.posted_date.strftime('%Y-%m-%d') }}</small>           
+            </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary">
+            <a class="ratings" href="{{ url_for('posts.new_comment', post_id=post.id) }}"> Leave a comment</a>
+        </button>
+    </article>
+    {% endfor %}
+    
+
+{% endblock content %}
+       
