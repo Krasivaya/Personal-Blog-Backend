@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block jumbo%}
+<div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+    <div class="text-white text-center py-5 px-4">
+        <div>
+            <h2 class="card-title h1-responsive mt-4 font-bold"><strong>Welcome to One Minute Pitch</strong></h2>
+            <h4 class="mb-5 text-white">Take a chance to inspire and impress someone with your One Minute Pitch!</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content%} 
+<h2 class=" font-bold">Newest Pitches</h2>
+    {% for post in posts.items %}
+    <article class="media content-section">
+      <img class="rounded float-left article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image) }}" alt="{{ post.author.username }} profile photo">
+        <div class="media-body">
+            <div class="d-flex w-100 justify-content-between">
+                <h2><a class="article-title mt-2" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <small class="text-muted mr-2">{{ post.posted_date.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <p class="article-content">{{ post.content }}</p>
+            <div class="article-metadata">
+                <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                <small>Posted in: <a class="mr-2" href="{{ url_for('posts.category_post', category=post.category) }}">{{ post.category }}</a></small>           
+            </div>
+            <button type="button" class="btn btn-outline-primary">
+                <a class="ratings" href="{{ url_for('posts.new_comment', post_id=post.id) }}"> Leave a comment</a>
+            </button>
+        </div>
+    </article>
+    {% endfor %}
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+        <div>
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="{{ url_for('main.home', page=page_num) }}">&laquo;</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="{{ url_for('main.home', page=page_num) }}">{{page_num}}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('main.home', page=page_num) }}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('main.home', page=page_num) }}">{{page_num}}</a>
+            </li>
+        {% endif %}
+
+      {% else %}
+        ...
+      {% endif %}
+
+    {% endfor %}
+
+{% endblock content %}
+       
