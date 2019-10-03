@@ -1,104 +1,44 @@
 {% extends 'base.html' %}
 <!-- Style block -->
 {% block styles %}
-    {{ super() }}
+{{ super() }}
     <link rel="icon" type="image/png" href=" {{url_for('static', filename = 'images/icon.png')}} ">
+    <link rel="stylesheet" href="{{url_for('static',filename='stylesheets/styles.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div class="container">
-        <div class="jumbotron" style="color: black">
-            <h1 class="display-3">Welcome To The Pitch</h1>
-            <p class="lead">This is a where you can be able to share with everyone your one minute pitch. Make it worth it!</p>
-            <p class="lead">
-                <a style="margin-left: 40%" class="btn btn-primary btn-lg" href="{{url_for('main.add_pitch')}}" role="button">Add Pitch</a>
-            </p>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+<div class="landingspot">
+    <div class="container-fluid">
+        <div class="textmiddle">
+            <h1 style="font-family: 'Berkshire Swash', cursive;">Welcome To Personal Blog</h1>
+            <p><i>{{ quotes.quote }}</i></p>
+            <p>{{ quotes.author }}</p>
+            <a href="{{url_for('main.add_article')}}" class="btn btn-primary">Write An Article</a>
         </div>
-    <div class="row">
-        <div>
-            <h1>Product Pitches</h1>
-            <hr class="my-4">
-            {% for pitch in pitches %}
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Product Pitch</div>
+    </div>
+</div>
+<div class="container-fluid">
+<div class="row">
+    <div>
+        <h1 style="text-align:center">Article Headlines</h1>
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div><br>
+        {% for article in articles %}
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ article.category }}</div>
                 <div class="panel-body">
-                <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a style="margin-right:10px" href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/like.png')}}"></a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/dislike.png')}}"></a>
+                    <p>{{ article.article | truncate(200) }}</p>
+                    <p><strong>{{ article.user.username }}</strong></p>
+                    <a href="{{url_for('main.comment',article_id=article.id)}}" class="btn btn-primary">Read-full
+                        Article</a>
+                </div>
             </div>
-            </div>
-            </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
-    <div class="row">
-        <div>
-            <h1>Interview Pitches</h1>
-            <hr class="my-4">
-            {% for pitch in interview_pitch %}
-            <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Interview Pitch</div>
-                    <div class="panel-body">
-                <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a style="margin-right:10px" href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/like.png')}}"></a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/dislike.png')}}"></a>
-            </div>
-            </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="row">
-        <div>
-            <h1>Promotion Pitches</h1>
-            <hr class="my-4">
-            {% for pitch in promotion_pitch %}
-            <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Promotion Pitch</div>
-                    <div class="panel-body">
-                <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a style="margin-right:10px" href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/like.png')}}"></a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/dislike.png')}}"></a>
-            </div>
-            </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="row">
-        <div>
-            <h1>Pick-up Pitches</h1>
-            <hr class="my-4">
-            {% for pitch in pickup_pitch %}
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Pick-up Pitch</div>
-                    <div class="panel-body">
-                <p>{{ pitch.pitch }}</p>
-                <p><strong>by: {{ pitch.user.username }}</strong></p>
-                <a style="margin-right:10px" href="{{url_for('main.comment',pitch_id=pitch.id)}}" class="btn btn-primary">Comment</a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/like.png')}}"></a>
-                <a style="margin-right:10px" href="#" class="btn btn-primary"><img width="20px" src="{{url_for('static', filename = 'images/dislike.png')}}"></a>
-            </div>
-            </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-
-
+</div>
 </div>
 {% endblock %}

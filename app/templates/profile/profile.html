@@ -16,7 +16,7 @@
     <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
     {%else%}
     <img src="{{url_for('static',filename='photos/default.png')}}" alt="" class="img-thumbnail">
-    <!-- <p>No profile picture</p> -->
+    
     {% endif %}
     {% if user == current_user %}
     <form  action="{{url_for('main.update_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
@@ -25,8 +25,6 @@
       <input type="submit" class="btn btn-primary">
     </form>
       {% endif %}
-
-    <!--Displaying user bio-->
     {% if user.bio %}
       <p> {{user.bio}}</p>
     {%else%}
@@ -37,22 +35,17 @@
         <a href="{{url_for('main.profle_update',username=user.username)}}" class="btn btn-primary">Edit profile</a>
     {% endif %}
   </div>
-
-  <!--Display profile photo-->
-  <!-- <div class="col-md-4"> -->
-      <h1>My Pitches</h1>
-      {% for mypitch in my_pitches %}
+      <h1>My Articles</h1>
+      {% for myarticle in my_articles %}
       <div class="col-md-4">
       <div class="panel panel-default">
-        <div class="panel-heading">My Pitch</div>
+        <div class="panel-heading">My Article</div>
         <div class="panel-body">
-          {{ mypitch.pitch }}
+          {{ myarticle.article | truncate(200) }}
       </div>
       </div>
     </div>
       {% endfor %}
-
-  <!-- </div> -->
 </div>
 <div class="row">
     

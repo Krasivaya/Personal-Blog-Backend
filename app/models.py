@@ -3,6 +3,11 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 class User(UserMixin,db.Model):
     '''
     This class will contain database schema for users
@@ -13,7 +18,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String,unique = True,nullable = False)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    pitches = db.relationship('Pitch',backref='user',lazy = 'dynamic')
+    article = db.relationship('Article',backref='user',lazy = 'dynamic')
     comments = db.relationship('Comment',backref='user',lazy='dynamic')
     password_hash = db.Column(db.String,nullable=False)
     @property
@@ -36,26 +41,26 @@ class User(UserMixin,db.Model):
         '''
         check_password_hash(self.password_hash,password)
 
-class Pitch(db.Model):
+class Article(db.Model):
     '''
-    This class will contain the database schema for picthes table
+    This class will contain the database schema for articles table
     '''
-    __tablename__ = 'pitches'
+    __tablename__ = 'articles'
 
     id = db.Column(db.Integer,primary_key = True)
-    pitch = db.Column(db.String)
+    article = db.Column(db.String)
     category = db.Column(db.String)
-    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    comments = db.relationship('Comment',backref='pitch',lazy='dynamic')
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    comments = db.relationship('Comment',backref='article',lazy='dynamic')
 
-    def save_pitch(self):
+    def save_article(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_pitch(cls,category):
-        pitches = Pitch.query.filter_by(category=category).all()
-        return pitches
+    def get_article(cls):
+        articles = Article.query.all()
+        return articles
 class Comment(db.Model):
     '''
     This class will contain the schema for comments
@@ -63,16 +68,20 @@ class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String(255))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    article_id = db.Column(db.Integer,db.ForeignKey('articles.id'))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     @classmethod
-    def get_comments(cls,pitch_id):
-        comments = Comment.query.filter_by(pitch_id=pitch_id).all()
+    def get_comments(cls,article_id):
+        comments = Comment.query.filter_by(article_id=article_id).all()
         return comments
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+class Quotes:
+    def __init__(self,author,quote):
+        '''
+        Method to instanciate the quotes class
+        '''
+        self.author = author
+        self.quote = quote
 
-
+    

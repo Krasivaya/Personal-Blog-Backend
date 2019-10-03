@@ -1,14 +1,12 @@
 from . import auth
 from flask import render_template,redirect,url_for,flash,request
 from .forms import RegistrationForm,LoginForm
-from .. import db,mail
-from ..email import mail_message
+from .. import db
 from ..models import User
 from flask_login import login_user,logout_user,login_required
 from werkzeug.security import check_password_hash
 from flask_mail import Message
 
-#Login view
 @auth.route('/login',methods = ['POST','GET'])
 def login():
     login_form = LoginForm()
@@ -28,7 +26,7 @@ def login():
     
     return render_template('auth/login.html',login_form = login_form,title = title)
 
-#Register view
+
 @auth.route('/registration', methods = ['GET','POST'])
 def register():
     form = RegistrationForm()
@@ -37,7 +35,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         try:
-            message = mail_message("Welcome to watchlist","email/welcome_user",user.email,user=user)            
+            message = Message("Hello Welcome to the pitch",sender=("The Pitch","devnyota254@gmail.com"),recipients=[form.email.data])
             mail.send(message)
         except Exception as e:
             print("mail not sent")
@@ -45,7 +43,6 @@ def register():
     title = 'New Account Registration'
     return render_template('auth/registration.html',title = title,registration_form = form)
 
-#Logout view
 @auth.route('/logout')
 @login_required
 def logout():
