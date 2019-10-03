@@ -8,7 +8,14 @@
 
 {% block content %}
 <div class="container">
-    <h1>Add Bio</h1>
-  {{wtf.quick_form(form)}}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <h1>Register For An Account</h1>
+            {{ wtf.quick_form(registration_form) }}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>
+
 {% endblock %}

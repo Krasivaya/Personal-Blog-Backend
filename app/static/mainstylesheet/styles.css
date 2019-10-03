@@ -1,0 +1,13 @@
+body{
+    background-image: url(../images/bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+}
+.panel{
+    color:black;
+    opacity: 0.8;
+}
+h1 {
+    text-align: center;
+}
