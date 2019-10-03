@@ -38,7 +38,7 @@ No bug known. If you found any, please contact!
 Email: semwagacarine@gmail.com
 
 ### Live site
-[Personal-Blog](https://krasivaya-blog.herokuapp.com/)
+[Personal-Blog](https://krasivaya-personal-blog.herokuapp.com/)
 
 ### License
 This project is under the [MIT](https://github.com/Krasivaya/github/blob/master/LICENSE) license.
