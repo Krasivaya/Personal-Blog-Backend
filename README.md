@@ -25,6 +25,7 @@ This is an Python application that gives a user a chance to share one minute pit
 * open folder in prefered IDE
 * open terminal
 * Activate virtual envirnoment `source virtual/bin/activate`
+* Install the lateest version of pip `curl https://bootstrap.pypa.io/get-pip.py | python`
 * Install all requirements `pip install -r requirements.txt`
 * Run in terminal `chmod a+x start.sh`
 * Run in terminal `./start.sh`
@@ -37,7 +38,7 @@ No bug known. If you found any, please contact!
 Email: semwagacarine@gmail.com
 
 ### Live site
-[One-Minute-Pitch](https://krasivaya-one-minute-pitch.herokuapp.com/)
+[One-Minute-Pitch](https://krasivaya-pitch.herokuapp.com/)
 
 ### License
 This project is under the [MIT](https://github.com/Krasivaya/github/blob/master/LICENSE) license.
