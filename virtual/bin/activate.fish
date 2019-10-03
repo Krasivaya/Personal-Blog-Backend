@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/wecode/Documents/moringa/core/python/week3/One-Minute-Pitch/virtual"
+set -gx VIRTUAL_ENV "/home/wecode/Documents/moringa/core/python/week3/test/test_1/virtual"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
