@@ -1,4 +1,4 @@
-# One Minute Pitch
+# Personal Blog
 
 ### Developed By
 [Carine I. SEMWAGA](https://github.com/Krasivaya)
