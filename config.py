@@ -22,4 +22,4 @@ configurations = {
     "production":ProdConfig,
     "development":DevConfig,
     "testing":TestConfig
-}
+} 
