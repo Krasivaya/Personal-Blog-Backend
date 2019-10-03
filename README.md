@@ -4,7 +4,7 @@
 [Carine I. SEMWAGA](https://github.com/Krasivaya)
 
 ### Description
-This is an Python application that gives a user a chance to share one minute pitch(es) with other users and be able to get vote(s) or comment(s) on it(them).
+This is an Python application that gives a user a chance to create and share his/her idea(es) with other users and they could be able to read and comment on them.
 
 ### Technologies Used
 
@@ -14,14 +14,14 @@ This is an Python application that gives a user a chance to share one minute pit
 4. HTML
 5. Bootsrap & CSS
 6. Git Version Control
-7. News API
+7. Postgresql
 8. Heruko
 
 ### Setup/Installation Requirements
 
 * Open your terminal
-* initialize github, git clone ` https://github.com/Krasivaya/One-Minute-Pitch.git `
-* cd One-Minute-Pitch
+* initialize github, git clone ` https://github.com/Krasivaya/Personal-Blog.git `
+* cd Personal-Blog
 * open folder in prefered IDE
 * open terminal
 * Activate virtual envirnoment `source virtual/bin/activate`
@@ -38,7 +38,7 @@ No bug known. If you found any, please contact!
 Email: semwagacarine@gmail.com
 
 ### Live site
-[One-Minute-Pitch](https://krasivaya-pitch.herokuapp.com/)
+[Personal-Blog](https://krasivaya-blog.herokuapp.com/)
 
 ### License
 This project is under the [MIT](https://github.com/Krasivaya/github/blob/master/LICENSE) license.
