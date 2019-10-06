@@ -35,7 +35,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         try:
-            message = Message("Hello Welcome to the pitch",sender=("The Pitch","devnyota254@gmail.com"),recipients=[form.email.data])
+            message = Message("Hello Welcome to personal blog",sender=("Personal Blog","semwagacarine@gmail.com"),recipients=[form.email.data])
             mail.send(message)
         except Exception as e:
             print("mail not sent")
