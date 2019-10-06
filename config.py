@@ -11,12 +11,12 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     SECRET_KEY="testkeyindevconfig"
-    SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://wecode:wecode@localhost/blog"
+    SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://carine:banana@localhost/blog"
     DEBUG = True
 
 class TestConfig(Config):
     SECRET_KEY="testkeyintestconfig"
-    SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://wecode:wecode@localhost/blog_test"
+    SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://carine:banana@localhost/blog_test"
 
 configurations = {
     "production":ProdConfig,
